@@ -403,6 +403,12 @@ func (logger *Logger) SetReportCaller(reportCaller bool) {
 	logger.ReportCaller = reportCaller
 }
 
+func (logger *Logger) SetCallerSkip(callerSkip int) {
+	logger.mu.Lock()
+	defer logger.mu.Unlock()
+	logger.CallerSkip = callerSkip
+}
+
 // ReplaceHooks replaces the logger hooks and returns the old ones
 func (logger *Logger) ReplaceHooks(hooks LevelHooks) LevelHooks {
 	logger.mu.Lock()
